@@ -11,7 +11,9 @@ import {
   StackDivider,
   useColorModeValue,
   List,
-  ListItem
+  ListItem,
+  Alert,
+  AlertIcon
 } from "@chakra-ui/react";
 import HeaderOnlyLayout from "@src/layout/HeaderOnlyLayout";
 
@@ -22,6 +24,13 @@ ItemPage.getLayout = function getLayout(page) {
 export default function ItemPage() {
   return (
     <Container maxW={"7xl"}>
+      <Alert status="warning">
+        <AlertIcon />
+        Cuando existe un path como [id], NextJs envia ahi todo el trafico que no coincide con
+        ninguna de las otras rutas estaticas (explorer o trending), ya que &quot;id&quot; es solo el
+        nombre dato al parametro que viene luego de la /
+      </Alert>
+
       <SimpleGrid
         columns={{ base: 1, lg: 2 }}
         spacing={{ base: 8, md: 10 }}

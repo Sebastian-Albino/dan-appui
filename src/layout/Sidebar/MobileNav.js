@@ -13,10 +13,17 @@ import {
   useColorModeValue,
   VStack
 } from "@chakra-ui/react";
-import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { ArrowBackIcon, ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
 import ColorModeToggle from "@src/components/ColorToggle";
+import { useRouter } from "next/router";
 
-export default function MobileNav({ onOpen, fullWidth, ...rest }) {
+export default function MobileNav({ onOpen, fullWidth, allowGoBack, ...rest }) {
+  const router = useRouter();
+
+  function goBack() {
+    router.back();
+  }
+
   return (
     <Flex
       ml={{ base: 0, md: fullWidth ? 0 : 60 }}
@@ -29,6 +36,16 @@ export default function MobileNav({ onOpen, fullWidth, ...rest }) {
       justifyContent={{ base: "space-between", md: "flex-end" }}
       {...rest}
     >
+      {fullWidth && (
+        <IconButton
+          display="flex"
+          mr="auto"
+          onClick={goBack}
+          variant="outline"
+          aria-label="back button"
+          icon={<ArrowBackIcon />}
+        />
+      )}
       {/* Si enviamos el handler se renderiza el btn */}
       {onOpen && (
         <IconButton

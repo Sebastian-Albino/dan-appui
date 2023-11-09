@@ -1,8 +1,16 @@
-import { Box, Flex, Icon } from "@chakra-ui/react";
+import { Flex, Icon, useColorModeValue } from "@chakra-ui/react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-export default function NavItem({ icon, children, ...rest }) {
+export default function NavItem({ icon, children, href, ...rest }) {
+  const router = useRouter();
+  const selectedRouter = router.pathname === href;
+  // Como la regla de los hooks lo indica, no podemos usar un hook en forma condicional,
+  // por eso asociales el resultado a una variable.
+  const selectedItemColor = useColorModeValue("orange.400", "gray.600");
+
   return (
-    <Box as="a" href="#" style={{ textDecoration: "none" }} _focus={{ boxShadow: "none" }}>
+    <Link href={href} style={{ textDecoration: "none" }}>
       <Flex
         align="center"
         p="4"
@@ -10,8 +18,9 @@ export default function NavItem({ icon, children, ...rest }) {
         borderRadius="lg"
         role="group"
         cursor="pointer"
+        bg={selectedRouter ? selectedItemColor : undefined}
         _hover={{
-          bg: "cyan.400",
+          bg: useColorModeValue("orange.700", "gray.700"),
           color: "white"
         }}
         {...rest}
@@ -28,6 +37,6 @@ export default function NavItem({ icon, children, ...rest }) {
         )}
         {children}
       </Flex>
-    </Box>
+    </Link>
   );
 }

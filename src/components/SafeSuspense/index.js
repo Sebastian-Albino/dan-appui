@@ -25,7 +25,7 @@ export default function SafeSuspense({
       fallbackRender={({ error, resetErrorBoundary }) => (
         <GeneralError error={error} resetErrorBoundary={resetErrorBoundary} />
       )}
-      onError={(error, info) => isDev && console.error(error, info)}
+      onError={(error, info) => console.error(error, info)}
       resetKeys={[children]}
     >
       <Suspense fallback={fallback}>{children}</Suspense>

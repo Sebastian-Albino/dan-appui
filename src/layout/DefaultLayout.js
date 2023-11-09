@@ -3,11 +3,11 @@ import MobileNav from "@src/layout/Sidebar/MobileNav";
 import SidebarContent from "@src/layout/Sidebar/SidebarContent";
 
 const LinkItems = [
-  { name: "Home" },
-  { name: "Trending" },
-  { name: "Explore" },
-  { name: "Favourites" },
-  { name: "Settings" }
+  { name: "Home", href: "/" },
+  { name: "Trending", href: "/trending" },
+  { name: "Explore", href: "/explore" },
+  { name: "Favourites", href: "/favs" },
+  { name: "Settings", href: "/settings" }
 ];
 
 /**
