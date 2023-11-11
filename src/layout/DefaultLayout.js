@@ -4,8 +4,8 @@ import SidebarContent from "@src/layout/Sidebar/SidebarContent";
 
 const LinkItems = [
   { name: "Home", href: "/" },
-  { name: "Trending", href: "/trending" },
-  { name: "Explore", href: "/explore" },
+  { name: "Static", href: "/static" },
+  { name: "Server Side", href: "/server-side" },
   { name: "Favourites", href: "/favs" },
   { name: "Settings", href: "/settings" }
 ];
