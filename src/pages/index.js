@@ -1,6 +1,22 @@
-import { Button, Container, Heading, Stack, Text } from "@chakra-ui/react";
+import { Button, Container, Heading, Stack, Text,HStack,Box } from "@chakra-ui/react";
+import { useState } from "react";
 
 export default function Home() {
+
+  const [estadoMicroServicio,setEstadoMicroservicio] = useState({})
+
+  const checkMicroService =  async (msURL) => {
+      // Fetch data from external API
+      const res = await fetch(msURL);
+      const data = await res.json();
+    
+      if (!data) {
+        return {
+          notFound: true
+        };
+      }
+      setEstadoMicroservicio(data);    
+  }
   return (
     <Container maxW={"5xl"}>
       <Stack
@@ -36,6 +52,37 @@ export default function Home() {
             Learn more
           </Button>
         </Stack>
+        <HStack spacing='24px'>
+        <Button
+            rounded={"full"}
+            px={6}
+            as="a"
+            onClick={()=>checkMicroService('http://localhost/usuarios/api/health')}
+          >
+            Check Usuarios
+          </Button>
+          <Button
+            rounded={"full"}
+            px={6}
+            as="a"
+            onClick={()=>checkMicroService('http://localhost/productos/api/health')}
+          >
+            Check Productos
+          </Button>
+          <Button
+            rounded={"full"}
+            px={6}
+            as="a"
+            onClick={()=>checkMicroService('http://localhost/pedidos/api/health')}
+          >
+            Check Pedidos
+          </Button>
+        </HStack>
+        <HStack>
+        <Text color={"gray.500"} maxW={"3xl"}>
+            {estadoMicroServicio &&  JSON.stringify(estadoMicroServicio)}
+        </Text>
+        </HStack>
       </Stack>
     </Container>
   );
